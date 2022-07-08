@@ -20,7 +20,12 @@ export default class Cart {
     remove(this.items, { product });
   }
   summary() {}
-  checkout() {}
+  checkout() {
+    return {
+      total: this.getTotal(),
+      items: this.items,
+    };
+  }
 }
 
 const cart = new Cart();
