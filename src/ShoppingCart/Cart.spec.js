@@ -6,6 +6,10 @@ describe('Cart', () => {
     title: 'Banana',
     price: 33222,
   };
+  let product2 = {
+    title: 'Morango',
+    price: 467484,
+  };
   beforeEach(() => {
     cart = new Cart();
   });
@@ -33,5 +37,18 @@ describe('Cart', () => {
     });
 
     expect(cart.getTotal()).toEqual(33222);
+  });
+  it('should update total when a product gets included and then removed', () => {
+    cart.add({
+      product,
+      quantity: 2,
+    });
+    cart.add({
+      product: product2,
+      quantity: 1,
+    });
+    cart.remove(product);
+
+    expect(cart.getTotal()).toEqual(467484);
   });
 });

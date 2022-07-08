@@ -16,7 +16,9 @@ export default class Cart {
     }
     this.items.push(item);
   }
-  remove(product) {}
+  remove(product) {
+    remove(this.items, { product });
+  }
   summary() {}
   checkout() {}
 }
