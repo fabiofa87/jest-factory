@@ -2,6 +2,10 @@ import Cart from './Cart';
 
 describe('Cart', () => {
   let cart;
+  let product = {
+    title: 'Banana',
+    price: 33222,
+  };
   beforeEach(() => {
     cart = new Cart();
   });
@@ -11,14 +15,23 @@ describe('Cart', () => {
 
   it('sould multiply quantity and price receive the total amount', () => {
     const item = {
-      product: {
-        title: 'Banana',
-        price: 33222,
-      },
+      product,
       quantity: 2,
     };
     cart.add(item);
 
     expect(cart.getTotal()).toEqual(66444);
+  });
+  it('should ensure no more than one product exists at a time', () => {
+    cart.add({
+      product,
+      quantity: 2,
+    });
+    cart.add({
+      product,
+      quantity: 1,
+    });
+
+    expect(cart.getTotal()).toEqual(33222);
   });
 });

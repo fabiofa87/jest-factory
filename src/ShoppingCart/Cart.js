@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import remove from 'lodash/remove';
+
 export default class Cart {
   items = [];
   getTotal() {
@@ -7,6 +10,10 @@ export default class Cart {
     );
   }
   add(item) {
+    const findItem = { product: item.product };
+    if (find(this.items, findItem)) {
+      remove(this.items, findItem);
+    }
     this.items.push(item);
   }
   remove(product) {}
